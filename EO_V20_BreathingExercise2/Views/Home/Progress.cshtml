@@ -1,0 +1,23 @@
+﻿@model EO_V20_BreathingExercise2.Models.ExercisePagemodel
+
+@{
+    ViewData["Title"] = "Progress";
+}
+
+<h1 class="display-5">Progress</h1>
+
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Minutes</th>
+    </tr>
+    @foreach (Exercise exercise in Model.Exercises)
+            {
+                <tr>
+                    <td>@exercise.Date</td>
+                    <td>@exercise.Minutes</td>
+                </tr>
+            }
+</table>
+
+<h2 class="display-6">Total of minutes: @Model.TotalMinutes</h2>

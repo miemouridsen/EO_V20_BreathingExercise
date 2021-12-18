@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Breathing";
+}
+
+<h1 class="display-5">Breathing exercise</h1>
+
+<form>
+    <p class="p-md-0">Choose length of your exercise:</p>
+    <input id="minutes" type="number" placeholder="Enter length in minutes"/>
+    <input type="button" value="Begin" onclick="StartExercise()" />
+    <input type="button" value="Cancel" onclick="CancelExercise()" />
+</form>
+    
+<h2 id ="breath" class="display-6"></h2>
+
+<script src="/js/Breathing.js"></script>
