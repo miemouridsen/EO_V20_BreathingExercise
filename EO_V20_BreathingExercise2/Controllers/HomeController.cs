@@ -28,11 +28,11 @@ namespace EO_V20_BreathingExercise2.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult Breathing()
         {
             return View();
         }
-
         [Authorize]
         public async Task<IActionResult> AddExercise(int min)
         {
@@ -40,19 +40,17 @@ namespace EO_V20_BreathingExercise2.Controllers
             exercise.Id = Guid.NewGuid();
             exercise.Minutes = min;
             exercise.Date = DateTime.Now;
-            //string name = User.Identity.Name;
-            exercise.UserName = "name";
+            exercise.UserName = User.Identity.Name;
 
             await _context.Exercises.AddAsync(exercise);
             await _context.SaveChangesAsync();
             return Redirect("/Home/Progress");
         }
-
         [Authorize]
         public async Task<IActionResult> Progress(ExercisePagemodel model)
         {
-            //List<Exercise> exercises = await _context.Exercises.Where(u => User.Identity.Name == u.UserName).ToListAsync();
-            List<Exercise> exercises = await _context.Exercises.ToListAsync();
+            List<Exercise> exercises = await _context.Exercises.Where(u => User.Identity.Name == u.UserName).ToListAsync();
+            //List<Exercise> exercises = await _context.Exercises.ToListAsync();
             model.Exercises = exercises;
             foreach (Exercise e in exercises)
             {
